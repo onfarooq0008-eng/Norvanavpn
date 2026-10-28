@@ -1,0 +1,30 @@
+# Site config. install.sh substitutes __DOMAIN__ and __PORT__, then runs certbot --nginx to add TLS.
+server {
+    listen 80;
+    listen [::]:80;
+    server_name __DOMAIN__;
+
+    access_log /var/log/vpngate-backend/nginx-access.log vpngate_noip;
+    error_log  /var/log/nginx/vpngate-backend.error.log warn;
+
+    client_max_body_size 8k;
+    server_tokens off;
+
+    add_header X-Content-Type-Options nosniff always;
+    add_header Strict-Transport-Security "max-age=31536000" always;
+
+    location / {
+        limit_req zone=vpngate_api burst=30 nodelay;
+        proxy_pass http://127.0.0.1:__PORT__;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        # Overwrite (never append) so clients cannot spoof the address the app rate-limits on.
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Connection "";
+        proxy_read_timeout 30s;
+        proxy_connect_timeout 5s;
+    }
+
+    # Optional hardening for the admin page: uncomment and set your own address.
+    # location /admin/ { allow 203.0.113.10; deny all; proxy_pass http://127.0.0.1:__PORT__; }
+}

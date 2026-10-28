@@ -1,0 +1,13 @@
+{
+  "bind_host": "127.0.0.1",
+  "bind_port": 8000,
+  "refresh_interval_s": 1800,
+  "probe_enabled": true,
+  "probe_concurrency": 4,
+  "probe_top_n": 40,
+  "probe_max_per_round": 20,
+  "failure_cooldown_s": 600,
+  "allow_compression": false,
+  "weights": {"speed": 0.20, "adv_ping": 0.05, "latency": 0.20, "load": 0.10,
+              "uptime": 0.05, "vg_score": 0.05, "reliability": 0.20, "freshness": 0.15}
+}

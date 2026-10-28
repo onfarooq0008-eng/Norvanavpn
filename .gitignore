@@ -1,0 +1,25 @@
+# secrets / signing
+*.jks
+*.keystore
+*.p12
+local.properties
+.env
+secrets.txt
+KEYSTORE_BASE64.txt
+# python (backend)
+__pycache__/
+*.pyc
+venv/
+.venv/
+*.db
+*.db-wal
+*.db-shm
+# android
+.gradle/
+build/
+.idea/
+*.iml
+.cxx/
+captures/
+# os
+.DS_Store

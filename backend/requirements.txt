@@ -1,0 +1,7 @@
+# Runtime dependencies, pinned for reproducible installs. The installer also writes a full
+# `pip freeze` lock file next to the venv. Review security advisories before upgrading.
+fastapi==0.115.6
+starlette==0.41.3
+pydantic==2.10.3
+uvicorn==0.32.1
+httpx==0.28.1

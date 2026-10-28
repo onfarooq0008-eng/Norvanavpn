@@ -1,0 +1,10 @@
+[Unit]
+Description=VPNGate backend - health check (restarts a hung API or worker)
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/vpngate-backend/scripts/healthcheck.sh
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true

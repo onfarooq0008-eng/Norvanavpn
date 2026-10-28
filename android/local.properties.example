@@ -1,0 +1,8 @@
+# Copy to local.properties (git-ignored) and fill in AFTER your backend is deployed.
+# Must be https and have no path, e.g.  https://vpn-api.example.com
+BACKEND_BASE_URL=
+# Value of VPNGATE_APP_API_KEY on the server (sudo cat /etc/vpngate-backend/env). Optional.
+# Anything inside an APK can be extracted: this only deters casual abuse.
+BACKEND_API_KEY=
+# Android SDK path is added automatically by Android Studio:
+# sdk.dir=/path/to/Android/Sdk

@@ -1,0 +1,36 @@
+[Unit]
+Description=VPNGate backend - REST API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=vpngate
+Group=vpngate
+WorkingDirectory=/opt/vpngate-backend
+EnvironmentFile=/etc/vpngate-backend/env
+Environment=VPNGATE_CONFIG=/etc/vpngate-backend/config.json
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/vpngate-backend/venv/bin/python -m app.serve
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/vpngate-backend
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=true
+LockPersonality=true
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+MemoryMax=300M
+TasksMax=128
+
+[Install]
+WantedBy=multi-user.target
